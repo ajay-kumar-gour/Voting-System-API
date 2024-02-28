@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-
+  role: {
+    type: String,
+    enum: [voter, admin],
+    default: voter,
+  },
   password: {
     type: String,
     required: true,
