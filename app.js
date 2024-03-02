@@ -1,20 +1,24 @@
-// # Express app initialization
+// app.js
 
 const express = require("express");
 const cors = require("cors");
 const connectToDB = require("./src/config/db");
-require("dotenv").config();
 const routes = require("./src/routes/index");
-const PORT = process.env.PORT || 3000;
+const dotenv = require("dotenv");
 
-// console.log(PORT);
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+// Middleware
 app.use(express.json());
-app.use(routes);
 app.use(cors());
+app.use(routes);
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`server running on PORT ${PORT}`);
+  console.log(`Server is running on PORT ${PORT}`);
   connectToDB();
 });
