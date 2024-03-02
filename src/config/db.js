@@ -1,8 +1,9 @@
-// # Database configuration
+// databaseConfig.js
 
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-require("dotenv").config();
+dotenv.config();
 
 const DB_LOCAL_URI = process.env.DB_LOCAL_URI;
 const DB_NAME = process.env.DB_NAME;
@@ -14,11 +15,11 @@ const connectToDB = async () => {
     const connection = await mongoose.connect(connectionURI);
 
     console.log(
-      "connncted to DATABASE:",
+      "Connected to database:",
       connection.connections[0]._connectionString
     );
-  } catch (erorr) {
-    console.log("Error connect to Database:", erorr);
+  } catch (error) {
+    console.error("Error connecting to database:", error);
   }
 };
 
