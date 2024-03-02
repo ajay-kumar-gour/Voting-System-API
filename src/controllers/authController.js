@@ -35,7 +35,17 @@ const loginController = async (req, res) => {
   }
 };
 
-const logoutController = (req, res) => {};
+const logoutController = async (req, res) => {
+  try {
+    // Implementation logic for user logout
+  } catch (error) {
+    res.status(500).send({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
+
 
 module.exports = {
   registerController,
