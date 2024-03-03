@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jsonwebtoken = require("jsonwebtoken");
 const User = require("../models/user.model");
 const SECRET = process.env.SECRET;
 const registerController = async (req, res) => {
