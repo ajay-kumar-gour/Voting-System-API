@@ -15,13 +15,11 @@ const registerController = async (req, res) => {
 
     const newUser = new User(userData);
     await newUser.save();
-    res
-      .status(201)
-      .send({
-        success: true,
-        message: "User registered successfully",
-        newUser,
-      });
+    res.status(201).send({
+      success: true,
+      message: "User registered successfully",
+      newUser,
+    });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
@@ -32,7 +30,24 @@ const registerController = async (req, res) => {
 
 const loginController = async (req, res) => {
   try {
-    // Implementation logic for user login
+    const userData = req.body;
+    if (!userData || Object.keys(userData).length === 0) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Request body is missing or empty" });
+    }
+    
+  const checkExistingUser = await User.findOne({
+    aadhardCardNumber: userData.aadhardCardNumber,
+  });
+  // console.log(checkExistingUser);
+  if (!checkExistingUser) {
+    return res.status(404).send({
+      success: false,
+      message: "User does not exist with provided aadhardCardNumber",
+    });
+  }
+
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
