@@ -66,7 +66,15 @@ const loginController = async (req, res) => {
     };
     console.log("payload", payload);
 
-   
+    const accessToken = jsonwebtoken.sign(payload, SECRET, {
+      expiresIn: "30m",
+    });
+    res.status(200).send({
+      success: true,
+      message: "Login successfully",
+      accessToken,
+      checkExistingUser,
+    });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
