@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
+const expiresIn = require("../config/jwt");
 const User = require("../models/user.model");
 const SECRET = process.env.SECRET;
 const registerController = async (req, res) => {
@@ -68,12 +69,13 @@ const loginController = async (req, res) => {
     console.log("payload", payload);
 
     const accessToken = jsonwebtoken.sign(payload, SECRET, {
-      expiresIn: "30m",
+      expiresIn
     });
     res.status(200).send({
       success: true,
       message: "Login successfully",
       accessToken,
+      expiresIn,
       checkExistingUser,
     });
   } catch (error) {
