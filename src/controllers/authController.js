@@ -1,7 +1,7 @@
 // #Authentication controller
 
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 
 const registerController = async (req, res) => {
@@ -46,7 +46,17 @@ const loginController = async (req, res) => {
       success: false,
       message: "User does not exist with provided aadhardCardNumber",
     });
-  }
+    }
+      const isValidPassword = await bcrypt.compare(
+        userData.password,
+        checkExistingUser.password
+      );
+
+      if (!isValidPassword) {
+        return res
+          .status(400)
+          .send({ success: false, message: "Invalid Password" });
+      }
 
   } catch (error) {
     res.status(500).send({
