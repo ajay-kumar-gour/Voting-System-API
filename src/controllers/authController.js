@@ -10,12 +10,18 @@ const registerController = async (req, res) => {
     if (!userData || Object.keys(userData).length === 0) {
       return res
         .status(400)
-        .send({ message: "Request body is missing or empty" });
+        .send({ success: false, message: "Request body is missing or empty" });
     }
 
     const newUser = new User(userData);
     await newUser.save();
-    res.status(201).send({ message: "User registered successfully" });
+    res
+      .status(201)
+      .send({
+        success: true,
+        message: "User registered successfully",
+        newUser,
+      });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
@@ -45,7 +51,6 @@ const logoutController = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   registerController,
