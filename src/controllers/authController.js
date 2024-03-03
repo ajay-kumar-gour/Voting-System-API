@@ -36,28 +36,35 @@ const loginController = async (req, res) => {
         .status(400)
         .send({ success: false, message: "Request body is missing or empty" });
     }
-    
-  const checkExistingUser = await User.findOne({
-    aadhardCardNumber: userData.aadhardCardNumber,
-  });
-  // console.log(checkExistingUser);
-  if (!checkExistingUser) {
-    return res.status(404).send({
-      success: false,
-      message: "User does not exist with provided aadhardCardNumber",
+
+    const checkExistingUser = await User.findOne({
+      aadhardCardNumber: userData.aadhardCardNumber,
     });
+    // console.log(checkExistingUser);
+    if (!checkExistingUser) {
+      return res.status(404).send({
+        success: false,
+        message: "User does not exist with provided aadhardCardNumber",
+      });
     }
-      const isValidPassword = await bcrypt.compare(
-        userData.password,
-        checkExistingUser.password
-      );
+    const isValidPassword = await bcrypt.compare(
+      userData.password,
+      checkExistingUser.password
+    );
 
-      if (!isValidPassword) {
-        return res
-          .status(400)
-          .send({ success: false, message: "Invalid Password" });
-      }
+    if (!isValidPassword) {
+      return res
+        .status(400)
+        .send({ success: false, message: "Invalid Password" });
+    }
 
+    const payload = {
+      name: checkExistingUser.name,
+
+      DOB: checkExistingUser.DOB,
+      aadhardCardNumber: checkExistingUser.aadhardCardNumber,
+    };
+    console.log("payload", payload);
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
