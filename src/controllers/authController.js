@@ -69,7 +69,7 @@ const loginController = async (req, res) => {
     console.log("payload", payload);
 
     const accessToken = jsonwebtoken.sign(payload, SECRET, {
-      expiresIn
+      expiresIn,
     });
     res.status(200).send({
       success: true,
@@ -88,7 +88,9 @@ const loginController = async (req, res) => {
 
 const logoutController = async (req, res) => {
   try {
-    // Implementation logic for user logout
+    // There's no action needed for logout in JWT since tokens are stateless.
+    // You can simply send a success response to the client.
+    res.status(200).send({ success: true, message: "Logout successful" });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
