@@ -14,7 +14,13 @@ const registerController = async (req, res) => {
         .status(400)
         .send({ success: false, message: "Request body is missing or empty" });
     }
-
+    if (userData.role == "admin") {
+      return res.status(403).send({
+        success: false,
+        message:
+          "user with admin role is not allowed",
+      });
+    }
     const newUser = new User(userData);
     await newUser.save();
     res.status(201).send({
