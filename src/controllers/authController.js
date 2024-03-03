@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
-
+const SECRET = process.env.SECRET;
 const registerController = async (req, res) => {
   try {
     const userData = req.body;
@@ -65,6 +65,8 @@ const loginController = async (req, res) => {
       aadhardCardNumber: checkExistingUser.aadhardCardNumber,
     };
     console.log("payload", payload);
+
+   
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
