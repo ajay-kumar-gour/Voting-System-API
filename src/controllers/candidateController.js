@@ -19,6 +19,28 @@ router.get("/", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
+// Define the route handler for GET /api/candidates/:candidateID
+router.get("/:candidateID", async (req, res) => {
+  try {
+    // Extract candidateID from request parameters
+    const { candidateID } = req.params;
+
+    // Find candidate in the database by ID
+    const candidate = await Candidate.findById(candidateID);
+
+    // If candidate is not found, return 404 Not Found response
+    if (!candidate) {
+      return res.status(404).json({ success: false, message: "Candidate not found" });
+    }
+
+    // Send candidate information as a response
+    res.status(200).json({ success: true, candidate });
+  } catch (error) {
+    // Handle errors
+    console.error("Error fetching candidate:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
 
 // Export the router
 module.exports = router;
