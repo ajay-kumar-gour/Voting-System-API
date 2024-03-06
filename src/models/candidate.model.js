@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const candidateSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true, // Name of the candidate is required
+    required: true, 
   },
   party: {
     type: String,
-    required: true, // Party affiliation is required
+    required: true, 
   },
   manifesto: {
-    type: String, // Manifesto is optional
+    type: String, 
   },
 });
 
