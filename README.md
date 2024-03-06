@@ -22,10 +22,9 @@ GET --> api/vote/results --> everyone can see the LIVE VOTE results
 
 POST --> api/candidate --> create a new & unique candiate
 
-GET --> api/voters --> shows the list of eligible voters
+GET --> api/vote/voters --> shows the list of eligible voters
 
 ## NOTE:
-
 1. ADMIN cannot cast vote
 2. A particular vote can only vote once to a candidate or a party
 3. Everyone can see the LIVE VOTE RESULT (no authentication needed)
