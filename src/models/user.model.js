@@ -56,6 +56,7 @@ userSchema.pre("save", async function (next) {
   } catch (error) {
     return next(error);
   }
+  
 });
 
 const User = mongoose.model("User", userSchema);
