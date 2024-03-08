@@ -12,7 +12,7 @@ const errorHandler = (err, req, res, next) => {
     res.status(err.status).json({ error: err.message });
   } else {
     // For unhandled errors, send a generic error response
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' ,message:false});
   }
 };
 
