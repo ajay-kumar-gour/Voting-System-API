@@ -13,7 +13,13 @@ const authenticateToken = (req, res, next) => {
       message: "Token missing",
     });
   }
-
+  // Check if the header starts with "Bearer "
+  if (!bearerHeader.startsWith("Bearer ")) {
+    return res.status(403).send({
+      success: false,
+      message: "Invalid token format",
+    });
+  }
   const part = bearerHeader.split(" ");
   console.log(part);
   const token = part[1];
