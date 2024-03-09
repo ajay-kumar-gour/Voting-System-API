@@ -14,6 +14,6 @@ router.get("/candidates", getAllCandidatesController);
 router.get("/candidates/:id", getCandidateByIdController);
 router.post("/candidates", authenticateToken, createCandidateController);
 router.put("/candidates/:id", authenticateToken, updateCandidateController);
-router.delete("/candidates/:id", deleteCandidateController);
+router.delete("/candidates/:id", authenticateToken,deleteCandidateController);
 
 module.exports = router;
