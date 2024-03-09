@@ -90,7 +90,7 @@ const getCandidateByIdController = async (req, res) => {
     }
 
     // If the candidate is found, send it in the response
-    res.status(200).json({success:true,candidate});
+    res.status(200).json({ success: true, candidate });
   } catch (error) {
     // If an error occurs during the database operation, send a 500 Internal Server Error response
     console.error("Error fetching candidate by ID:", error);
@@ -98,9 +98,54 @@ const getCandidateByIdController = async (req, res) => {
   }
 };
 
+const updateCandidateController = async (req, res) => {
+  try {
+    const { id } = req.params; // Assuming the candidate ID is passed as a route parameter
+    const { name, party, manifesto } = req.body; // Extract candidate data from the request body
+
+    // Check if the provided ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid candidate ID" });
+    }
+
+    // Check if required fields are missing
+    if (!name && !party && !manifesto) {
+      return res.status(400).json({
+        message:
+          "At least one field (name, party, manifesto) must be provided for update",
+      });
+    }
+
+    // Fetch the candidate from the database by ID
+    let candidate = await Candidate.findById(id);
+
+    // If the candidate with the specified ID is not found, send a 404 Not Found response
+    if (!candidate) {
+      return res.status(404).json({ message: "Candidate not found" });
+    }
+
+    // Update candidate information if provided
+    if (name) candidate.name = name;
+    if (party) candidate.party = party;
+    if (manifesto) candidate.manifesto = manifesto;
+
+    // Save the updated candidate to the database
+    candidate = await candidate.save();
+
+    // Send the updated candidate in the response
+    res.status(200).json(candidate);
+  } catch (error) {
+    // If an error occurs during the database operation, send a 500 Internal Server Error response
+    console.error("Error updating candidate:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = updateCandidateController;
 
 module.exports = {
   getAllCandidatesController,
   getCandidateByIdController,
   createCandidateController,
+  updateCandidateController,
 };
