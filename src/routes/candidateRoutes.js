@@ -7,11 +7,13 @@ const {
   getCandidateByIdController,
   createCandidateController,
   updateCandidateController,
+  deleteCandidateController,
 } = require("../controllers/candidateController");
 
 router.get("/candidates", getAllCandidatesController);
 router.get("/candidates/:id", getCandidateByIdController);
 router.post("/candidates", authenticateToken, createCandidateController);
-router.put("/candidates/:id",authenticateToken, updateCandidateController);
+router.put("/candidates/:id", authenticateToken, updateCandidateController);
+router.delete("/candidates/:id", deleteCandidateController);
 
 module.exports = router;
