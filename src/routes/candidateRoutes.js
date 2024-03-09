@@ -10,6 +10,6 @@ const {
 
 router.get("/candidates", getAllCandidatesController);
 router.get("/candidates/:id", getCandidateByIdController);
-router.post("/candidates",createCandidateController);
+router.post("/candidates", authenticateToken,createCandidateController);
 
 module.exports = router;
