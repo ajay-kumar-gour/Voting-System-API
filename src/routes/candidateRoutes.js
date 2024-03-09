@@ -12,6 +12,6 @@ const {
 router.get("/candidates", getAllCandidatesController);
 router.get("/candidates/:id", getCandidateByIdController);
 router.post("/candidates", authenticateToken, createCandidateController);
-router.put("/candidates/:id", authenticateToken, updateCandidateController);
+router.put("/candidates/:id",authenticateToken, updateCandidateController);
 
 module.exports = router;
