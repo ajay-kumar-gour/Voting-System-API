@@ -1,5 +1,5 @@
 const Candidate = require("../models/candidate.model");
-
+const mongoose = require("mongoose");
 const createCandidateController = async (req, res) => {
   try {
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -59,14 +59,12 @@ const getAllCandidatesController = async (req, res) => {
       return res.status(404).json({ message: "No candidates found" });
     }
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "candidates successfully fetched",
-        totalCandidates: candidates.length,
-        candidates,
-      });
+    res.status(200).json({
+      success: true,
+      message: "candidates successfully fetched",
+      totalCandidates: candidates.length,
+      candidates: candidates,
+    });
   } catch (error) {
     // If an error occurs during the database operation, send a 500 Internal Server Error response
     console.error("Error fetching candidates:", error);
@@ -78,6 +76,11 @@ const getCandidateByIdController = async (req, res) => {
   try {
     const { id } = req.params; // Assuming the candidate ID is passed as a route parameter
 
+    // Check if the provided ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid candidate ID" });
+    }
+
     // Fetch the candidate from the database by ID
     const candidate = await Candidate.findById(id);
 
@@ -87,13 +90,14 @@ const getCandidateByIdController = async (req, res) => {
     }
 
     // If the candidate is found, send it in the response
-    res.status(200).json(candidate);
+    res.status(200).json({success:true,candidate});
   } catch (error) {
     // If an error occurs during the database operation, send a 500 Internal Server Error response
     console.error("Error fetching candidate by ID:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 module.exports = {
   getAllCandidatesController,
