@@ -71,6 +71,7 @@ const loginController = async (req, res) => {
 
       DOB: checkExistingUser.DOB,
       aadhardCardNumber: checkExistingUser.aadhardCardNumber,
+      role: checkExistingUser.role
     };
     console.log("payload", payload);
 
