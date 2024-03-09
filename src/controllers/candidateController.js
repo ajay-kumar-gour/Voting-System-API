@@ -59,7 +59,14 @@ const getAllCandidatesController = async (req, res) => {
       return res.status(404).json({ message: "No candidates found" });
     }
 
-    res.status(200).json(candidates);
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "candidates successfully fetched",
+        totalCandidates: candidates.length,
+        candidates,
+      });
   } catch (error) {
     // If an error occurs during the database operation, send a 500 Internal Server Error response
     console.error("Error fetching candidates:", error);
