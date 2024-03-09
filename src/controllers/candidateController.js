@@ -13,6 +13,11 @@ const createCandidateController = async (req, res) => {
         .status(400)
         .json({ message: "Name and party are required fields" });
     }
+    if (!req.decodedData || req.decodedData.role !== "admin") {
+      return res.status(403).json({
+        message: "Unauthorized: Only admin users can create candidates",
+      });
+    }
 
     // Check if a candidate with the same party name already exists
     const existingCandidate = await Candidate.findOne({ party });
