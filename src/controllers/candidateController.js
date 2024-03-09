@@ -1,11 +1,10 @@
 const Candidate = require("../models/candidate.model");
 
-
 const createCandidateController = async (req, res) => {
   try {
-      if (!req.body || Object.keys(req.body).length === 0) {
-        return res.status(400).json({ message: "Request body is empty" });
-      }
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(400).json({ message: "Request body is empty" });
+    }
     // Extract candidate data from the request body
     const { name, party, manifesto } = req.body;
 
@@ -20,7 +19,11 @@ const createCandidateController = async (req, res) => {
     const savedCandidate = await newCandidate.save();
 
     // Send the newly created candidate in the response
-    res.status(201).json(savedCandidate);
+    res.status(201).json({
+      success: true,
+      messages: "candidate created successfully",
+      createdCandidateDetails: savedCandidate,
+    });
   } catch (error) {
     // If an error occurs during the database operation, send a 500 Internal Server Error response
     console.error("Error creating candidate:", error);
@@ -29,10 +32,8 @@ const createCandidateController = async (req, res) => {
 };
 const getAllCandidatesController = async (req, res) => {
   try {
-
     const candidates = await Candidate.find();
 
-    
     if (!candidates || candidates.length === 0) {
       return res.status(404).json({ message: "No candidates found" });
     }
