@@ -141,11 +141,39 @@ const updateCandidateController = async (req, res) => {
   }
 };
 
-module.exports = updateCandidateController;
+
+const deleteCandidateController = async (req, res) => {
+  try {
+    const { id } = req.params; // Assuming the candidate ID is passed as a route parameter
+
+    // Check if the provided ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid candidate ID" });
+    }
+
+    // Find the candidate by ID and delete it
+    const deletedCandidate = await Candidate.findByIdAndDelete(id);
+
+    // If the candidate with the specified ID is not found, send a 404 Not Found response
+    if (!deletedCandidate) {
+      return res.status(404).json({ message: "Candidate not found" });
+    }
+
+    // Send a success message in the response
+    return res.status(200).json({ message: "Candidate deleted successfully" });
+  } catch (error) {
+    // If an error occurs during the database operation, send a detailed error response
+    console.error("Error deleting candidate:", error);
+    return res
+      .status(500)
+      .json({ message: "Error deleting candidate", error: error.message });
+  }
+};
 
 module.exports = {
   getAllCandidatesController,
   getCandidateByIdController,
   createCandidateController,
   updateCandidateController,
+  deleteCandidateController,
 };
