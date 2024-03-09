@@ -6,10 +6,12 @@ const {
   getAllCandidatesController,
   getCandidateByIdController,
   createCandidateController,
+  updateCandidateController,
 } = require("../controllers/candidateController");
 
 router.get("/candidates", getAllCandidatesController);
 router.get("/candidates/:id", getCandidateByIdController);
-router.post("/candidates", authenticateToken,createCandidateController);
+router.post("/candidates", authenticateToken, createCandidateController);
+router.put("/candidates/:id", authenticateToken, updateCandidateController);
 
 module.exports = router;
