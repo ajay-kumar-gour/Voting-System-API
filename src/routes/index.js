@@ -5,6 +5,6 @@ const authRoutes = require("./authRoutes");
 const candidateRoutes = require("./candidateRoutes");
 router.use("/api/auth", authRoutes);
 router.use("/api", candidateRoutes);
-router.use("/api/votes", voteRoutes);
+// router.use("/api/votes", voteRoutes);
 
 module.exports = router;
