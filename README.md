@@ -18,3 +18,17 @@ The Voting API provides a platform for managing voting processes in various scen
 
 These rules and features collectively contribute to the fairness, transparency, and security of the voting process facilitated by the Voting API.
 
+## Features
+
+| Feature                        | Description                                                                                                     |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| Create Candidate               | Admins can create new candidates providing details such as name, party, manifesto, etc.                        |
+| View Candidates                | Retrieve a list of all candidates or view specific candidate details by ID.                                     |
+| Cast Vote                      | Registered users can cast their votes for candidates, ensuring fair and transparent elections.                   |
+| Live Vote Count                | Real-time view of the vote count for each candidate or party, accessible to everyone without authentication.    |
+| Admin Dashboard                | Administrators have access to a dashboard for managing candidates, monitoring voting activities, etc.           |
+| Age Eligibility Check          | Users' age is verified against the legal voting age (18 years or older) before allowing them to cast their votes.|
+| Aadhar Card Registration       | Users can register using their Aadhar Card details, ensuring only legitimate users participate in voting.        |
+| Duplicate Vote Prevention      | Mechanisms are in place to prevent users from casting multiple votes to the same candidate or party.             |
+| Secure Authentication          | JWT tokens are used for user authentication and authorization, ensuring secure access to protected endpoints.   |
+| Error Handling                 | The API returns appropriate error messages for various scenarios, ensuring a smooth user experience.           |
