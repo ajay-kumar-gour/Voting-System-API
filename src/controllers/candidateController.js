@@ -141,7 +141,6 @@ const updateCandidateController = async (req, res) => {
   }
 };
 
-
 const deleteCandidateController = async (req, res) => {
   try {
     const { id } = req.params; // Assuming the candidate ID is passed as a route parameter
@@ -170,10 +169,30 @@ const deleteCandidateController = async (req, res) => {
   }
 };
 
+const deleteALLCandidateController = async (req, res) => {
+  try {
+    // Delete all candidates from the database
+    const result = await Candidate.deleteMany({});
+
+    // If no candidates were deleted, send a 404 Not Found response
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No candidates found to delete" });
+    }
+
+    // Send a success message in the response
+    res.status(200).json({ message: "All candidates deleted successfully" });
+  } catch (error) {
+    // If an error occurs during the database operation, send a 500 Internal Server Error response
+    console.error("Error deleting all candidates:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   getAllCandidatesController,
   getCandidateByIdController,
   createCandidateController,
   updateCandidateController,
   deleteCandidateController,
+  deleteALLCandidateController,
 };
