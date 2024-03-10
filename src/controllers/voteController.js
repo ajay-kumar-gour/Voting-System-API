@@ -6,7 +6,11 @@ const castVoteController = async (req, res) => {
   try {
     // Extract the candidate ID from the request parameters
     const { id } = req.params;
-   
+    // Check if the provided ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid candidate ID" });
+    }
+
     // Find the candidate by ID in the database
     const candidate = await Candidate.findById(id);
 
