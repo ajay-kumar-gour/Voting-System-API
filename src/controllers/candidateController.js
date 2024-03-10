@@ -53,7 +53,7 @@ const createCandidateController = async (req, res) => {
 };
 const getAllCandidatesController = async (req, res) => {
   try {
-    const candidates = await Candidate.find();
+    const candidates = await Candidate.find({}, " _id name party manifesto");
 
     if (!candidates || candidates.length === 0) {
       return res.status(404).json({ message: "No candidates found" });
@@ -82,7 +82,8 @@ const getCandidateByIdController = async (req, res) => {
     }
 
     // Fetch the candidate from the database by ID
-    const candidate = await Candidate.findById(id);
+    // const candidate = await Candidate.findById(id);
+    const candidate = await Candidate.findById(id, "_id name party manifesto");
 
     // If the candidate with the specified ID is not found, send a 404 Not Found response
     if (!candidate) {
@@ -115,11 +116,11 @@ const updateCandidateController = async (req, res) => {
           "At least one field (name, party, manifesto) must be provided for update",
       });
     }
-      if (!req.decodedData || req.decodedData.role !== "admin") {
-        return res.status(403).json({
-          message: "Unauthorized: Only admin users can update candidates",
-        });
-      }
+    if (!req.decodedData || req.decodedData.role !== "admin") {
+      return res.status(403).json({
+        message: "Unauthorized: Only admin users can update candidates",
+      });
+    }
 
     // Fetch the candidate from the database by ID
     let candidate = await Candidate.findById(id);
@@ -154,11 +155,11 @@ const deleteCandidateController = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid candidate ID" });
     }
-  if (!req.decodedData || req.decodedData.role !== "admin") {
-    return res.status(403).json({
-      message: "Unauthorized: Only admin users can delete candidates",
-    });
-  }
+    if (!req.decodedData || req.decodedData.role !== "admin") {
+      return res.status(403).json({
+        message: "Unauthorized: Only admin users can delete candidates",
+      });
+    }
     // Find the candidate by ID and delete it
     const deletedCandidate = await Candidate.findByIdAndDelete(id);
 
@@ -180,11 +181,11 @@ const deleteCandidateController = async (req, res) => {
 
 const deleteALLCandidateController = async (req, res) => {
   try {
-      if (!req.decodedData || req.decodedData.role !== "admin") {
-        return res.status(403).json({
-          message: "Unauthorized: Only admin users can delete all candidates",
-        });
-      }
+    if (!req.decodedData || req.decodedData.role !== "admin") {
+      return res.status(403).json({
+        message: "Unauthorized: Only admin users can delete all candidates",
+      });
+    }
     // Delete all candidates from the database
     const result = await Candidate.deleteMany({});
 
