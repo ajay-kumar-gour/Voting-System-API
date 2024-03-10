@@ -10,6 +10,12 @@ const castVoteController = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid candidate ID" });
     }
+    if (!req.decodedData || req.decodedData.role == "admin") {
+      return res.status(403).json({
+        message:
+          "Unauthorized: Only Voters can cast vote, ADMIN cannot cast a vote",
+      });
+    }
     // Retrieve the user ID from the decoded data
     const userId = req.decodedData.id;
 
