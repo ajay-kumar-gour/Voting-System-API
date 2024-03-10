@@ -10,7 +10,16 @@ const castVoteController = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid candidate ID" });
     }
+    // Retrieve the user ID from the decoded data
+    const userId = req.decodedData.id;
 
+    // Find the user by ID in the database
+    const user = await User.findById(userId);
+
+    // Check if the user has already voted
+    if (user.isVoted) {
+      return res.status(403).json({ message: "You have already voted" });
+    }
     // Find the candidate by ID in the database
     const candidate = await Candidate.findById(id);
 
@@ -22,7 +31,9 @@ const castVoteController = async (req, res) => {
     // Increment the votes for the candidate by 1 and save the updated candidate
     candidate.countOfVotes += 1;
     await candidate.save();
-
+    user.isVoted = true;
+    await user.save();
+    console.log("Decoded data  cv", req.decodedData);
     // Return a success message
     res.status(200).json({ message: "Vote cast successfully" });
   } catch (error) {
