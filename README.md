@@ -35,3 +35,25 @@ These rules and features collectively contribute to the fairness, transparency, 
 | Duplicate Vote Prevention      | Mechanisms are in place to prevent users from casting multiple votes to the same candidate or party.             |
 | Secure Authentication          | JWT tokens are used for user authentication and authorization, ensuring secure access to protected endpoints.   |
 | Error Handling                 | The API returns appropriate error messages for various scenarios, ensuring a smooth user experience.           |
+
+
+## Endpoints
+
+### Authentication
+- **POST /api/auth/register**: Register a new user.
+- **POST /api/auth/login**: Log in a registered user and generate JWT tokens.
+- **POST /api/auth/logout**: Log out a logged-in user.
+
+### Candidates
+- **GET /api/candidates**: Retrieve a list of all candidates.
+- **GET /api/candidates/:id**: Retrieve a specific candidate by its ID.
+- **POST /api/candidates**: Create a new candidate.
+- **PUT /api/candidates/:id**: Update an existing candidate.
+- **DELETE /api/candidates/:id**: Delete a candidate by its ID.
+- **DELETE /api/candidates**: Delete all candidates.
+
+### Votes
+- **POST /api/votes/cast-vote/:id**: Cast a vote for a candidate by its ID.
+
+### Live Vote Count
+- **GET /api/live-vote-count**: View the live vote count for each candidate.
