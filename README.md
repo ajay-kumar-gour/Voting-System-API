@@ -1,32 +1,20 @@
 # Voting-System-API
 
-Endpoints:
+Welcome to the Voting API! This API provides functionality for managing candidates, casting votes, and retrieving live vote counts.
 
-## (AUTHENTICATION)
+## Overview
 
-POST --> api/auth/register --> USERS(VOTERS) should register giving details as name, age, DOB , age , aadhard card number , password
+The Voting API provides a platform for managing voting processes in various scenarios, such as elections, surveys, or polls. Here's an overview of the key features and rules governing the API:
 
-POST --> api/auth/login --> USERS(VOTERS) can login using aadhard card number and password
+1. **ADMIN cannot cast vote**: Administrators of the system are restricted from casting votes. Their role is to manage candidates, monitor voting activities, and ensure the integrity of the voting process.
 
-POST --> api/auth/logout --> logs out the current users -->invalidates the token
+2. **Unique voting restriction**: Each voter can only cast one vote to a candidate or a party. This prevents duplicate or fraudulent voting and maintains the fairness of the voting process.
 
-## (CANDIDATE)
+3. **Live vote result**: The API offers a feature to view live vote results to everyone. No authentication is required to access this feature. Users can see the current status of votes cast for each candidate or party in real-time.
 
-GET --> api/candidates --> shows all the list of candidates
+4. **Admin-exclusive candidate creation**: Only administrators have the authority to create new candidates. This ensures that the candidate pool is managed securely and accurately by authorized personnel.
 
-GET --> api/candidates/:candidateID --> shows info of a single candiated based on the provided ID
+5. **Age eligibility for voting**: Any user with a valid AADHAR CARD can register on the platform. However, only users with an age of 18 years or older are eligible to cast their votes. This rule aligns with legal voting age requirements in many jurisdictions.
 
-POST --> api/vote/:candidateID --> allows the user to vote for the candidate
+These rules and features collectively contribute to the fairness, transparency, and security of the voting process facilitated by the Voting API.
 
-GET --> api/vote/results --> everyone can see the LIVE VOTE results
-
-POST --> api/candidate --> create a new & unique candiate
-
-GET --> api/vote/voters --> shows the list of eligible voters
-
-## NOTE:
-1. ADMIN cannot cast vote
-2. A particular vote can only vote once to a candidate or a party
-3. Everyone can see the LIVE VOTE RESULT (no authentication needed)
-4. ONLY ADMIN can creata a new CANDIDATE
-5. Any user who has a AADHAR CARD can register, but only user of AGE >=18 are eligible to VOTE
