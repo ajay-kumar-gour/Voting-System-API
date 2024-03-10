@@ -17,8 +17,7 @@ const registerController = async (req, res) => {
     if (userData.role == "admin") {
       return res.status(403).send({
         success: false,
-        message:
-          "user with admin role is not allowed",
+        message: "user with admin role is not allowed",
       });
     }
     const newUser = new User(userData);
@@ -68,10 +67,11 @@ const loginController = async (req, res) => {
 
     const payload = {
       name: checkExistingUser.name,
-
+      id: checkExistingUser._id,
       DOB: checkExistingUser.DOB,
       aadhardCardNumber: checkExistingUser.aadhardCardNumber,
-      role: checkExistingUser.role
+      role: checkExistingUser.role,
+
     };
     console.log("payload", payload);
 
