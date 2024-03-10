@@ -49,4 +49,26 @@ const castVoteController = async (req, res) => {
   }
 };
 
-module.exports = { castVoteController };
+const showLiveVoteCount = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({}, " -_id name party countOfVotes");
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: "No candidates found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Live vote count successfully fetched",
+      totalCandidates: candidates.length,
+      candidates: candidates,
+    });
+  } catch (error) {
+    // If an error occurs during the database operation, send a 500 Internal Server Error response
+    console.error("Error fetching live vote count:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+module.exports = { castVoteController, showLiveVoteCount };
