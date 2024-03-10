@@ -58,3 +58,26 @@ These rules and features collectively contribute to the fairness, transparency, 
 ### Live Vote Results
 - `GET /api/live-vote-count`: View the live vote count for each candidate.
 
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ajay-kumar-gour/Voting-System-API
+2. **Navigate to the project directory:**
+    ```bash
+   cd Voting System API
+3. **Install dependencies:**
+    ```bash
+   npm install
+4. **Set up environment variables:**
+    ```bash
+   Create a .env file in the root directory.
+   Define required environment variables such as PORT, MONGODB_URI, and SECRET.
+    example :
+      PORT=8000
+      MONGO_URI=mongodb://localhost:27017/voting
+      SECRET=your_secret_key
+5. **Start the server:**
+    ```bash
+   npm start
