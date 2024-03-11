@@ -15,7 +15,7 @@ The Voting API provides a platform for managing voting processes in various scen
 
 3. **Live vote result**: The API offers a feature to view live vote results to everyone. No authentication is required to access this feature. Users can see the current status of votes cast for each candidate or party in real-time.
 
-4. **Admin-exclusive candidate creation**: Only administrators have the authority to create new candidates. This ensures that the candidate pool is managed securely and accurately by authorized personnel.
+4. **Admin-exclusive candidate creation**: Only administrators have the authority to create/update/delete new candidates. This ensures that the candidate pool is managed securely and accurately by authorized personnel.
 
 5. **Age eligibility for voting**: Any user with a valid AADHAR CARD can register on the platform. However, only users with an age of 18 years or older are eligible to cast their votes. This rule aligns with legal voting age requirements in many jurisdictions.
 
