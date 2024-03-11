@@ -7,7 +7,7 @@ Welcome to the Voting API! This API provides functionality for managing candidat
 
 ## Overview
 
-The Voting API provides a platform for managing voting processes in various scenarios, such as elections, surveys, or polls. Here's an overview of the key features and rules governing the API:
+The Voting API provides a platform for managing voting processes in various scenarios, such as elections, or polls. Here's an overview of the key features and rules governing the API:
 
 1. **ADMIN cannot cast vote**: Administrators of the system are restricted from casting votes. Their role is to manage candidates, monitor voting activities, and ensure the integrity of the voting process.
 
