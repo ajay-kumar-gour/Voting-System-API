@@ -17,7 +17,7 @@ The Voting API provides a platform for managing voting processes in various scen
 
 4. **Admin-exclusive candidate creation**: Only administrators have the authority to create/update/delete new candidates. This ensures that the candidate pool is managed securely and accurately by authorized personnel.
 
-5. **Age eligibility for voting**: Any user with a valid AADHAR CARD can register on the platform. However, only users with an age of 18 years or older are eligible to cast their votes. This rule aligns with legal voting age requirements in many jurisdictions.
+
 
 These rules and features collectively contribute to the fairness, transparency, and security of the voting process facilitated by the Voting API.
 
