@@ -1,4 +1,4 @@
-# Voting-System-API
+# Voting-System-API - <img alt='VoteXpress' src='https://img.shields.io/badge/VoteXpress-blue.svg?style=for-the-badge&logo=&logoColor' />
 
 Welcome to the Voting API! This API provides functionality for managing candidates, casting votes, and retrieving live vote counts.
 
