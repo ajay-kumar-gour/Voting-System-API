@@ -97,7 +97,7 @@ const logoutController = async (req, res) => {
   try {
     // There's no action needed for logout in JWT since tokens are stateless.
     // You can simply send a success response to the client.
-    res.status(200).send({ success: true, message: "Logout successful" });
+    res.status(200).send({ success: true, message: "User logged out successful" });
   } catch (error) {
     res.status(500).send({
       message: "Internal Server Error",
