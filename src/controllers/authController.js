@@ -62,7 +62,7 @@ const loginController = async (req, res) => {
     if (!isValidPassword) {
       return res
         .status(400)
-        .send({ success: false, message: "Invalid Password" });
+        .send({ success: false, message: "Invalid Password, Please check" });
     }
 
     const payload = {
