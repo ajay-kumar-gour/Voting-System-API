@@ -70,6 +70,7 @@ const loginController = async (req, res) => {
       id: checkExistingUser._id,
       DOB: checkExistingUser.DOB,
       aadhardCardNumber: checkExistingUser.aadhardCardNumber,
+      
       role: checkExistingUser.role,
 
     };
