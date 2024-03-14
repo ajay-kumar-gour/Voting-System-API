@@ -61,6 +61,7 @@ const loginController = async (req, res) => {
 
     if (!isValidPassword) {
       return res
+        
         .status(400)
         .send({ success: false, message: "Invalid Password, Please check" });
     }
@@ -70,7 +71,7 @@ const loginController = async (req, res) => {
       id: checkExistingUser._id,
       DOB: checkExistingUser.DOB,
       aadhardCardNumber: checkExistingUser.aadhardCardNumber,
-      
+
       role: checkExistingUser.role,
 
     };
