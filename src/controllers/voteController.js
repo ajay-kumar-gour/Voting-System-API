@@ -52,6 +52,7 @@ const castVoteController = async (req, res) => {
 const showLiveVoteCount = async (req, res) => {
   try {
     const candidates = await Candidate.find({}, " -_id name party countOfVotes");
+    const candidates = await Candidate.find({}, " -_id name party countOfVotes");
 
     if (!candidates || candidates.length === 0) {
       return res.status(404).json({ message: "No candidates found" });

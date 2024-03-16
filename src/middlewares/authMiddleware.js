@@ -30,6 +30,8 @@ const authenticateToken = (req, res, next) => {
       return res.status(403).send({
         succes: false,
         message: "Invalid Token",
+        message: "Invalid Token",
+        message: "Invalid Token",
         error,
       });
     } else {
