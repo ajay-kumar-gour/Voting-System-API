@@ -210,4 +210,5 @@ module.exports = {
   updateCandidateController,
   deleteCandidateController,
   deleteALLCandidateController,
+  deleteALLCandidatesController,
 };
